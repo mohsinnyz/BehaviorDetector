@@ -1,0 +1,9 @@
+cat <<EOT > .gitignore
+__pycache__/
+.env
+data/
+models/*.pt
+models/*.pth
+.DS_Store
+venv/
+EOT
