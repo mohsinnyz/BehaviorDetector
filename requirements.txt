@@ -1,0 +1,7 @@
+cat <<EOT > requirements.txt
+ultralytics
+mediapipe
+opencv-python
+numpy
+python-dotenv
+EOT
