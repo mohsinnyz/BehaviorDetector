@@ -1,4 +1,3 @@
-#/Users/mohsinniaz/BehaviorDetector/src/main.py
 import cv2
 import time
 import src.config as config
@@ -32,7 +31,7 @@ def main():
     # 3. Runtime Variables
     prev_time = 0
     frame_count = 0
-    current_objects = [] # Store objects to persist them between YOLO scans
+    current_objects = [] 
 
     while True:
         ret, frame = cap.read()
@@ -46,9 +45,8 @@ def main():
         active_alerts = []
 
         # ==========================================
-        # PHASE 1: FAST CHECKS (Face - Run Every Frame)
+        # PHASE 1: FAST CHECKS (Face)
         # ==========================================
-        # Face detection is lightweight, so we run it every frame for real-time eyes/head tracking.
         landmarks = face_mesh.get_landmarks(frame)
         
         is_drowsy = False
@@ -63,16 +61,15 @@ def main():
             is_distracted, pose_data = distract_det.analyze(landmarks, w, h)
 
         # ==========================================
-        # PHASE 2: SLOW CHECKS (YOLO - Run Every N Frames)
+        # PHASE 2: SLOW CHECKS (YOLO)
         # ==========================================
-        # We only run YOLO if the frame count matches the interval (e.g., every 30th frame).
         if frame_count % config.DETECTION_INTERVAL == 0:
             current_objects = object_det.detect(frame)
         
         # ==========================================
         # PHASE 3: ALERTS & LOGIC
         # ==========================================
-        # Check Objects (using the persisted 'current_objects' list)
+        # Check Objects
         for obj in current_objects:
             if obj['label'] == 'phone':
                 active_alerts.append("!!! PHONE DETECTED !!!")
@@ -89,22 +86,31 @@ def main():
         # ==========================================
         # PHASE 4: VISUALIZATION
         # ==========================================
-        # A. Draw Objects (Persisted)
+        # A. Draw Objects
         viz.draw_objects(frame, current_objects)
 
-        # B. Draw Face Stats
+        # B. Draw Face Status
         drowsy_color = (0, 0, 255) if is_drowsy else (0, 255, 0)
         viz.draw_status(frame, "Status", "DROWSY" if is_drowsy else "Awake", (20, 40), drowsy_color)
         viz.draw_status(frame, "EAR", f"{ear_score:.2f}", (20, 70), drowsy_color)
 
+        # --- UPDATED DEBUG SECTION START ---
         distract_color = (0, 0, 255) if is_distracted else (0, 255, 0)
-        viz.draw_status(frame, "Focus", "DISTRACTED" if is_distracted else "Good", (20, 110), distract_color)
+        focus_status = "DISTRACTED" if is_distracted else "Focused"
+        
+        # Show Pitch (P) and Yaw (Y) on screen so we can tune config
+        pitch = int(pose_data[0])
+        yaw = int(pose_data[1])
+        debug_text = f"{focus_status} (P:{pitch} Y:{yaw})"
+        
+        viz.draw_status(frame, "Focus", debug_text, (20, 110), distract_color)
+        # --- UPDATED DEBUG SECTION END ---
 
-        # C. Draw Big Alerts
+        # D. Draw Big Alerts
         if active_alerts:
             viz.draw_alerts(frame, active_alerts)
 
-        # D. FPS
+        # E. FPS
         curr_time = time.time()
         fps = 1 / (curr_time - prev_time) if prev_time else 0
         prev_time = curr_time
