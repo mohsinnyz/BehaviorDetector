@@ -55,7 +55,8 @@ class DistractionDetector:
         # 5. Convert Rotation Vector to Euler Angles
         # Jacobian not used, just unpacking
         rmat, jac = cv2.Rodrigues(rotation_vector)
-        angles, mtxR, mtxQ, Q, Qx, Qy, Qz = cv2.RQDecomp3x3(rmat)
+        angles, mtxR, mtxQ, Qx, Qy, Qz = cv2.RQDecomp3x3(rmat)
+
 
         # Angles are usually: pitch (x), yaw (y), roll (z)
         pitch = angles[0] * 360

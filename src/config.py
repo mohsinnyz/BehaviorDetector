@@ -1,4 +1,3 @@
-#/Users/mohsinniaz/BehaviorDetector/src/config.py
 import os
 
 # ==========================================
@@ -22,11 +21,11 @@ FPS = 30
 # ==========================================
 # 3. OBJECT DETECTION (YOLOv8)
 # ==========================================
-CONFIDENCE_THRESHOLD = 0.5  # Ignore detections below 50%
+# UPDATED: Lowered to 0.30 to catch Food/Drink easier
+CONFIDENCE_THRESHOLD = 0.30  
 
-# PERFORMANCE OPTIMIZATION: Only run YOLO every N frames
-# 30 frames = approx once per second. Lower this (e.g., 10) if you need faster reaction.
-DETECTION_INTERVAL = 30  
+# UPDATED: Run every 10 frames (approx 0.3s) to catch quick sips/bites
+DETECTION_INTERVAL = 10  
 
 # Must match the training order: 0=phone, 1=food, 2=drink
 CLASS_NAMES = {
@@ -52,8 +51,10 @@ EAR_CONSEC_FRAMES = 15    # Must close eyes for ~0.5s to trigger
 # ==========================================
 # 5. DISTRACTION (Head Pose)
 # ==========================================
-PITCH_THRESHOLD = 15      # Looking Up/Down
-YAW_THRESHOLD = 20        # Looking Left/Right
+# UPDATED: Increased to 25 to allow looking down at laptop screen
+PITCH_THRESHOLD = 25      
+# UPDATED: Increased to 30 for more natural movement
+YAW_THRESHOLD = 30        
 DISTRACTION_FRAMES = 10   # Consecutive frames
 
 # ==========================================
