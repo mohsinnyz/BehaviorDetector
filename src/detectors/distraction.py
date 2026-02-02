@@ -1,3 +1,4 @@
+#/Users/mohsinniaz/BehaviorDetector/src/detectors/distraction.py
 import cv2
 import numpy as np
 import src.config as config

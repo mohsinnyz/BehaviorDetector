@@ -1,3 +1,4 @@
+#/Users/mohsinniaz/BehaviorDetector/src/config.py
 import os
 
 # ==========================================
@@ -23,6 +24,10 @@ FPS = 30
 # ==========================================
 CONFIDENCE_THRESHOLD = 0.5  # Ignore detections below 50%
 
+# PERFORMANCE OPTIMIZATION: Only run YOLO every N frames
+# 30 frames = approx once per second. Lower this (e.g., 10) if you need faster reaction.
+DETECTION_INTERVAL = 30  
+
 # Must match the training order: 0=phone, 1=food, 2=drink
 CLASS_NAMES = {
     0: 'phone',
@@ -39,13 +44,13 @@ COLORS = {
 }
 
 # ==========================================
-# 4. DROWSINESS (Mediapipe) - Future Use
+# 4. DROWSINESS (Mediapipe)
 # ==========================================
 EAR_THRESHOLD = 0.25      # Eye Aspect Ratio (below 0.25 = closed)
 EAR_CONSEC_FRAMES = 15    # Must close eyes for ~0.5s to trigger
 
 # ==========================================
-# 5. DISTRACTION (Head Pose) - Future Use
+# 5. DISTRACTION (Head Pose)
 # ==========================================
 PITCH_THRESHOLD = 15      # Looking Up/Down
 YAW_THRESHOLD = 20        # Looking Left/Right
