@@ -15,9 +15,8 @@ The **Behavior Detector** is an advanced computer vision application that combin
 
 See the system in action:
 
-[![Watch the Demo](https://img.shields.io/badge/Watch_Demo-LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)]([LINKEDIN_DEMO_LINK])
+[![Watch the Demo](https://img.shields.io/badge/Watch_Demo-LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/posts/mohsinnyz_just-completed-aprojectof-my-cv-portfolio-activity-7424426778892382209-5mta?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD-hOpsBy8Ui1sLYmLInXe6vzIfnXcIi3QM)
 
-*(Please ensure you replace `[https://www.linkedin.com/posts/mohsinnyz_just-completed-aprojectof-my-cv-portfolio-activity-7424426778892382209-5mta?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD-hOpsBy8Ui1sLYmLInXe6vzIfnXcIi3QM]` with the actual URL).*
 
 ---
 
