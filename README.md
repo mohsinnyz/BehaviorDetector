@@ -99,7 +99,7 @@ graph TD
 
 1.  **Clone the Repository**
     ```bash
-    git clone https://github.com/yourusername/BehaviorDetector.git
+    git clone https://github.com/mohsinnyz/BehaviorDetector.git
     cd BehaviorDetector
     ```
 
